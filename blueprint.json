@@ -15,8 +15,13 @@
         "level": "alpha",
         "patch": 0
       }
-    }
+    },
+    "timestamp": "2018-03-14T10:29:33+11:00"
   },
   "software": {
+    "base": {
+      "name": "domain_host",
+      "deployment_type": "worker"
+    }
   }
 }
