@@ -2,8 +2,8 @@
   "schema": {
     "type": "service_blueprint",
     "version": {
-      "major": 1,
-      "minor": 0
+      "major": 0,
+      "minor": 1
     },
     "origin": "Engines Developer Studio 0.2"
   },
@@ -18,29 +18,28 @@
     },
     "software": {
       "display": {
-        "title": "dns server",
-        "label": "dns"
+        "title": "domain hosting",
+        "label": "domains"
       }
     },
-    "timestamp": "2017-11-22T10:57:22+11:00"
+    "timestamp": "2018-03-14T10:34:50+11:00"
   },
   "software": {
     "base": {
-      "name": "dns",
-      "accepts": [
-        "ManagedEngine",
-        "ManagedService"
-      ],
+      "name": "domains",
+      "cardinal": "dns",
       "publisher_namespace": "EnginesSystem",
-      "type_path": "dns",
-      "service_handle_field": "hostname",
+      "type_path": "domains",
+      "service_handle_field": "domainname",
       "parent_image": "engines/servicebase",
-      "run_as_user": "bind",
       "deployment_type": "worker",
       "memory": {
         "required": 96,
         "recommended": 96
       },
+      "run_as_user": "bind"
+    },
+    "disposition": {
       "immutable": true,
       "attach_post_build": true
     },
@@ -68,7 +67,7 @@
     ],
     "consumer_params": [
       {
-        "name": "hostname",
+        "name": "domain_name",
         "mandatory": true,
         "immutable": true,
         "input": {
@@ -76,16 +75,9 @@
         }
       },
       {
-        "name": "ip",
+        "name": "wan_or_lan",
         "mandatory": true,
-        "immutable": true,
-        "input": {
-          "type": "string",
-          "hint": "ip address "
-        }
-      },
-      {
-        "name": "ip_type",
+        "ask_at_build_time": true,
         "input": {
           "type": "select",
           "label": "Internal or External for domain",
@@ -96,6 +88,15 @@
               "wan": "External"
             }
           }
+        }
+      },
+      {
+        "name": "type",
+        "value": "domain",
+        "mandatory": true,
+        "immutable": true,
+        "input": {
+          "type": "boolean"
         }
       }
     ],
